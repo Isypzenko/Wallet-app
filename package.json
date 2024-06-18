@@ -1,0 +1,27 @@
+{
+  "name": "wallet-app",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "rm -rf .parcel-cache && parcel",
+    "build": "rm -rf .parcel-cache && parcel build",
+    "watch-css": "tailwindcss build -i ./src/main.css -o ./src/output.css --watch",
+    "dev": "concurrently \"npm run watch-css\" \"npm start\""
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "parcel": "^2.11.0",
+    "postcss": "^8.4.33",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.1"
+  },
+  "version": "1.0.0",
+  "default": "dist2/index.html",
+  "dependencies": {
+    "core-js": "^3.35.1",
+    "firebase": "^10.8.0",
+    "regenerator-runtime": "^0.13.11"
+  },
+  "author": "Isypzenko",
+  "license": "ISC",
+  "description": ""
+}

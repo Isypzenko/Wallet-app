@@ -1,0 +1,38 @@
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+  min-width: 460px;
+}
+
+.currency {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  margin-right: 2.5rem
+}
+
+.bill-container {
+  justify-content: flex-end;
+}
+
+.bill {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  margin-right: 6px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
