@@ -23,6 +23,7 @@ import {
 export default Timestamp;
 // All data to using in project
 export let state = {
+  isLogged: false,
   userInfo: {
     bill: 0,
     nickname: "USER",
@@ -37,6 +38,9 @@ export let state = {
   categories: [],
   refreshLimitInfo: [],
 };
+export function test(data) {
+  state = data;
+}
 // Reseting state to default
 export function resetAllState() {
   state = {
@@ -57,6 +61,7 @@ export function resetAllState() {
 }
 // Log out user from page
 export async function logOut(auth) {
+  state.isLogged = false;
   signOut(auth)
     .then(() => {
       console.log("User signed out");
@@ -326,6 +331,7 @@ export async function registerOrLoginUser(
   const auth = getAuth();
   const userEmail = email;
   const userPassword = password;
+  state.isLogged = true;
   if (method) {
     const userNickname = nickname;
     return await createUserWithEmailAndPassword(auth, userEmail, userPassword)

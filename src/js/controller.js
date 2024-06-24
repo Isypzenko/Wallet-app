@@ -249,6 +249,7 @@ function checkCategoryLimit(select) {
   } else PlanningView.removeErrorColorInput(select);
   let result = model.calculatePercentLimitBar(selectValue);
   if (result > 100) result = 100;
+  if (result < 0) result = 0;
   PlanningView.renderPercentLimit(result);
 }
 // Log out user from page
@@ -414,7 +415,7 @@ async function handlerGetRegister(email, password, nickname) {
   RegisterView.clearInput(email, password, nickname);
 }
 // START RENDER REGISTER BUTTON
-function handlerStartReg(message) {
+function handlerStartReg() {
   RegisterView._renderParentElement();
   initRegister();
 }
@@ -503,6 +504,28 @@ function initLogin() {
   LoginView.addHandlerStartReg(handlerStartReg);
 }
 
-if (!model.state.isLogged) {
-  initLogin();
+function startApp() {
+  const savedData = JSON.parse(localStorage.getItem("state"));
+  if (savedData && savedData.isLogged) {
+    model.test(savedData);
+    setHandlerBtnSideMenu();
+    SideBarView.insertMarkUp(setHandlersSideBar);
+    MainPageView._renderParentElement();
+    setUpUserData();
+    MainPageView.setRecords(model.state.records);
+    MainPageView.addHandlerDeleteRecord(deleteRecord, database);
+    setLocalStorageEvent();
+  } else {
+    initLogin();
+    setLocalStorageEvent();
+  }
 }
+
+function setLocalStorageEvent() {
+  window.addEventListener("beforeunload", (event) => {
+    console.log(model.state);
+    localStorage.setItem("state", JSON.stringify(model.state));
+  });
+}
+
+startApp();

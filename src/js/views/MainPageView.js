@@ -58,13 +58,20 @@ class MainPageView extends View {
   removeRecordFromPage(record) {
     record.remove();
   }
+  formatDateFromTimestamp(OldDate) {
+    const milliseconds =
+      OldDate.seconds * 1000 + Math.floor(OldDate.nanoseconds / 1000000);
+    const date = new Date(milliseconds);
+    const formattedDate = date.toLocaleDateString("en-GB");
+    return formattedDate;
+  }
   getHistoryMarkUp(record) {
     return `<div class="flex mt-2 flex-row justify-between gap-1 record" data-id=${
       record.id
     }>
-    <div class="transaction-date w-[25%]">${record.info.date
-      .toDate()
-      .toLocaleDateString()}</div>
+    <div class="transaction-date w-[25%]">${this.formatDateFromTimestamp(
+      record.info.date
+    )}</div>
     <div class="transaction-type w-[25%] mr-1" >${record.info.type.toUpperCase()}</div>
     <div class="transaction-amount w-[25%] mr-1">${record.info.sum}</div>
     <div class="transaction-description w-[25%] mr-1">${
@@ -76,6 +83,7 @@ class MainPageView extends View {
     const billUAH = document.querySelector(".uah");
     const billUSD = document.querySelector(".usd");
     const billEUR = document.querySelector(".eur");
+
     billUAH.textContent = bill;
     billUSD.textContent = (bill / usd).toFixed(2) || 0;
     billEUR.textContent = (bill / eur).toFixed(2) || 0;
