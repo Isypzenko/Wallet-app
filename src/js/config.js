@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBUYgLHMVa4dRjtMZghPJUydn3spbxj94Y",
+  apiKey: "Please your Firebase API key",
   authDomain: "wallet-project-e2927.firebaseapp.com",
   projectId: "wallet-project-e2927",
   storageBucket: "wallet-project-e2927.appspot.com",
